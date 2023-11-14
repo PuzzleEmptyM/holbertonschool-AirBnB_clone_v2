@@ -48,7 +48,7 @@ def display_number_template(n):
 def display_number_odd_or_even(n):
     """ Display an HTML page with H1 tag: 'Number: n is even|odd' only
     if n is an integer """
-    return render_template('number_odd_or_even_template.html', n=n)
+    return render_template('6-number_odd_or_even_template.html', n=n)
 
 
 if __name__ == '__main__':
