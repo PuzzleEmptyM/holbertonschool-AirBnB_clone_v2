@@ -13,8 +13,15 @@ app = Flask(__name__)
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_by_states():
     """ Display a list of states and cities from the storage """
-    states = storage.all('State')
-    return render_template("8-cities_by_states.html", states=states)
+    states = storage.all('State').values()
+    app.logger.info(f"Number of states: {len(states)}")
+    sorted_states = sorted(states, key=lambda state: state.name)
+
+    for state in sorted_states:
+        if storage.__class__.__name__ == "DBStorage":
+            state.cities = state.cities()
+
+    return render_template('7-cities_by_states.html', states=sorted_states)
 
 
 @app.teardown_appcontext
