@@ -3,7 +3,7 @@
 This is a simple Flask web application.
 """
 
-from flask import Flask, escape, render_template
+from flask import Flask, escape
 
 app = Flask(__name__)
 
@@ -40,9 +40,8 @@ def display_number(n):
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def display_number_template(n):
-    """ Display an HTML page with H1 tag: 'Number: n'
-    only if n is an integer """
-    return render_template('5-number.html', n=1)
+    """ Display the number directly, only if n is an integer """
+    return str(n)
 
 
 if __name__ == '__main__':
