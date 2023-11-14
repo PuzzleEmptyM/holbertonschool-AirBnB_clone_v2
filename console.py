@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
                 new_obj.__dict__[split[0]] = split[1].replace("_", " ")
             storage.new(new_obj)
             storage.save()
-            print(object.id)
+            print(new_obj.id)
             storage.save()
 
     def help_create(self):
