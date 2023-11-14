@@ -2,6 +2,7 @@
 """ Console Module """
 import cmd
 import sys
+import time
 from models import storage
 from models.city import City
 from models.user import User
@@ -101,7 +102,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, command):
         """Quit command to exit the program"""
-        print("\n Saving changes . . .\n \n \n Quitting . . .")
+        print("\n")
+        time.sleep(2)
+        print("Saving changes . . .")
+        time.sleep(2)
+        print("Deleting the Matrix")
+        time.sleep(1)
+        print("Solving quantum equations")
+        time.sleep(2)
+        print("Dominating the Globe")
+        time.sleep(1)
+        print("Quitting . . .")
+        time.sleep(2)
         exit()
 
     def help_quit(self):
@@ -110,7 +122,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """Quits upon receiving EOF as input"""
-        print("\n Saving changes . . .\n \n \n Quitting . . .")
+        print("\n")
+        time.sleep(2)
+        print("Saving changes . . .")
+        time.sleep(2)
+        print("Deleting the Matrix")
+        time.sleep(1)
+        print("Solving quantum equations")
+        time.sleep(2)
+        print("Dominating the Globe")
+        time.sleep(1)
+        print("Quitting . . .")
+        time.sleep(2)
         exit()
 
     def help_EOF(self):
