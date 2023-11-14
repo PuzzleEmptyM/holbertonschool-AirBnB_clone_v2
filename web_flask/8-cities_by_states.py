@@ -16,6 +16,10 @@ def cities_by_states():
     states = storage.all(State).values()
     sorted_states = sorted(states, key=lambda state: state.name)
 
+    for state in sorted_states:
+        if storage.__class__.__name__ == "DBStorage":
+            state.cities = state.cities()
+
     return render_template('7-cities_by_states.html', states=sorted_states)
 
 
