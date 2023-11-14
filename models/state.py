@@ -11,12 +11,11 @@ from sqlalchemy.orm import relationship
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
-    name = Column(String(128), nullable=False)
-    if getenv("HBNB_TYPE_STORAGE") == "db":
-        cities = relationship(
-            "City", backref="state", cascade="all, delete"
-        )
-    else:
+    name = Column(String(128),
+                  nullable=False)
+    cities = relationship("City", backref="state", cascade="delete")
+
+    if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def cities(self):
             """returns list of City instances upon state_id"""
