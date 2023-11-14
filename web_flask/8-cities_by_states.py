@@ -18,7 +18,7 @@ def cities_by_states():
 
 
 @app.teardown_appcontext
-def teardown_appcontext(exception):
+def teardown(exception):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
