@@ -42,7 +42,7 @@ def display_number(n):
 def display_number_template(n):
     """ Display an HTML page with H1 tag: 'Number: n'
     only if n is an integer """
-    return render_template('5-number.html', n=n)
+    return render_template('5-number.html', n=1)
 
 
 if __name__ == '__main__':
