@@ -15,6 +15,11 @@ app = Flask(__name__)
 def cities_by_states():
     """ Display a list of states and cities from the storage """
     states = storage.all(State).values()
+
+    for state in states:
+        if storage.__class__.__name__ == "DBStorage":
+            state.cities = state.cities()
+
     return render_template("8-cities_by_states.html", states=states)
 
 
