@@ -2,7 +2,6 @@
 """ Console Module """
 import cmd
 import sys
-import signal
 from models import storage
 from models.city import City
 from models.user import User
@@ -102,15 +101,16 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, command):
         """Quit command to exit the program"""
+        print("\n Saving changes . . .\n \n \n Quitting . . .")
         exit()
 
     def help_quit(self):
         """ Prints the help documentation for quit  """
         print("Exits the program with formatting\n")
 
-    def do_EOF(self, *line):
+    def do_EOF(self, arg):
         """Quits upon receiving EOF as input"""
-        print()
+        print("\n Saving changes . . .\n \n \n Quitting . . .")
         exit()
 
     def help_EOF(self):
@@ -142,7 +142,6 @@ class HBNBCommand(cmd.Cmd):
             storage.new(new_obj)
             storage.save()
             print(new_obj.id)
-            storage.save()
 
     def help_create(self):
         """ Help information for the create method """
@@ -346,12 +345,5 @@ class HBNBCommand(cmd.Cmd):
         print("\033[3J\033[H\033[2J")
 
 
-def signal_thing(sig, frame):
-    """ defined behavior upon CTRL^C input """
-    print('\nWHERE ARE YOU GOING? ;_;\n(hbnb) ', end='')
-    return
-
-
 if __name__ == "__main__":
-    signal.signal(signal.SIGINT, signal_thing)
     HBNBCommand().cmdloop()
