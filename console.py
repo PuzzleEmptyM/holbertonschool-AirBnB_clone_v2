@@ -123,40 +123,31 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Create an object of any class"""
-        import re
-
         args = line.split()
-        if not args:
+        if not line:
             print("** class name missing **")
             return
-        else:
-            class_name = args[0]
-            if class_name not in self.classes.keys():
-                print('** class doesn\'t exist **')
-                return
+        elif args[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+        new_obj = HBNBCommand.classes[args[0]]()
+        param = args[1:]
+        for value in param:
+            split = value.split("=")
+            if (split[1][0] == '"'):
+                new_obj.__dict__[
+                    split[0]] = split[1][1:-1].replace("_", " ")
             else:
-                kwargs = {}
-                for arg in args[1:]:
-                    separate = arg.partition('=')
-                    # print(f"These are args: {args}")
-                    # print(f"This is the sep: {separate}")
-                    attr_name = separate[0]
-                    attr_value = separate[2]
-                    if re.search(r"^(\-?\d*\.?\d*|\"\S+\")$", str(attr_value)):
-                        if re.search(r"^\"\S+\"$", attr_value):
-                            attr_value = str(attr_value.replace(
-                                '_',
-                                ' '
-                            )[1:-1])
-                        kwargs[attr_name] = attr_value
-                object = eval(class_name)(**kwargs)
-                object.save()
-                print(object.id)
+                new_obj.__dict__[split[0]] = split[1].replace("_", " ")
+            storage.new(new_obj)
+            storage.save()
+            print(object.id)
+            storage.save()
 
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
-        print("[Usage]: create <Class name> <param 1> <param 2> <param 3>\n")
+        print("[Usage]: create <class name> <param 1> <param 2> <param 3>\n")
 
     def do_show(self, args):
         """ Method to show an individual object """
