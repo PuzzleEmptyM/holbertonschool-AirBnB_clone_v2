@@ -12,15 +12,14 @@ app = Flask(__name__)
 
 @app.route('/states', strict_slashes=False)
 def states():
-    """ Display an HTML page listing states existing in storage """
+    """ Display a list of states  """
     states = storage.all('State')
     return render_template("8-cities_by_states.html", states=states)
 
 
 @app.route('/states/<id>', strict_slashes=False)
 def states_id(id):
-    """ Displays an HTML page with states that match the ID
-    also displays the cities tied to that state. """
+    """ Display information about a specific state by ID """
     for state in storage.all('State').values():
         if state.id == id:
             return render_template('9-states.html', state=state)
@@ -29,7 +28,7 @@ def states_id(id):
 
 @app.teardown_appcontext
 def teardown(exc):
-    """ Ends the existing SQLAlchemy session """
+    """ Remove the current SQLAlchemy Session """
     storage.close()
 
 
