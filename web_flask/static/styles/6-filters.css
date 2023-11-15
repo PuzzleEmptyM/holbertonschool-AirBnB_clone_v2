@@ -1,0 +1,122 @@
+/* styles/4-filters.css */
+
+.filters {
+    height: 70px;
+    width: 100%;
+    max-width: 1000px; /* Set a maximum width for the .filters section */
+    margin: 0 auto; /* Center the .filters horizontally */
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px; /* Apply 25-pixel padding on both sides by default */
+    box-sizing: border-box;
+}
+
+.filters .search-button {
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    font-size: 18px;
+    height: 48px;
+    width: 20%; /* Default width */
+    border: none;
+    border-radius: 4px;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    line-height: 48px; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
+    margin-left: auto; /* Push the button to the right */
+}
+
+.filters .search-button:hover {
+    opacity: 0.9;
+}
+
+.filters .locations, .filters .amenities {
+    height: 100%;
+    width: 25%;
+    border-right: 1px solid #DDDDDD;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.filters .amenities {
+    border-right: none; /* Remove the right border from the second filter */
+}
+
+.filters .locations h3, .filters .amenities h3 {
+    font-weight: 600;
+    font-size: 14px;
+    margin: auto; /* Reset margin to center them */
+}
+
+.filters .locations h4, .filters .amenities h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+.filters .popover ul{
+    list-style-type: none;
+}
+
+.filters .popover {
+    background-color: #FAFAFA;
+    display: none;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    list-style-type: none;
+}
+
+.filters .locations .popover{
+    height: fit-content;
+    width: auto;
+    margin-left: -2.75rem;
+}
+
+.filters .amenities .popover{
+    height: fit-content;
+    width: relative;
+    max-width: 250px;
+    margin-left: -1rem;
+}
+
+/* Style the filter divs with contextual dropdowns */
+.filters .locations .popover,
+.filters .amenities .popover {
+    padding: auto auto auto -5rem;
+}
+
+/* Style the list items within the dropdown */
+.filters .locations .popover ul,
+.filters .amenities .popover ul {
+    padding: 4;
+}
+
+/* Style the "States" within "Locations" filter */
+.filters .locations h2 {
+    margin-left: 10%;
+    font-size: 16px;
+}
+
+/* Style the contextual dropdowns when hovering over the filter div */
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover{
+    display: block;
+}
+
+/* Additional styles for smaller screens */
+@media (max-width: 768px) {
+    .search-button {
+        width: 30%; /* Adjust button width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .search-button {
+        width: 40%; /* Further adjust button width for even smaller screens */
+    }
+}
