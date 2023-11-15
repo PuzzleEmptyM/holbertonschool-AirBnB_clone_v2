@@ -3,35 +3,35 @@
 This is a Flask web application.
 """
 
-from flask import Flask, render_template
 from models import storage
-from models.state import State
+from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
 
 @app.route('/states', strict_slashes=False)
 def states():
-    """ Display a list of states """
-    states = storage.all(State).values()
-    return render_template("9-states.html", states=states)
+    """ Display an HTML page listing states existing in storage """
+    states = storage.all('State')
+    return render_template("8-cities_by_states.html", states=states)
 
 
 @app.route('/states/<id>', strict_slashes=False)
-def states_by_id(id):
-    """ Display information about a specific state by ID """
-    state = storage.get(State, id)
-    if state:
-        return render_template("9-states_by_id.html", state=state)
-    else:
-        return render_template("9-states_not_found.html")
+def states_id(id):
+    """ Displays an HTML page with states that match the ID
+    also displays the cities tied to that state. """
+    for state in storage.all('State').values():
+        if state.id == id:
+            return render_template('9-states.html', state=state)
+    return render_template('9-states.html')
 
 
 @app.teardown_appcontext
-def teardown(exception):
-    """ Remove the current SQLAlchemy Session """
+def teardown(exc):
+    """ Ends the existing SQLAlchemy session """
     storage.close()
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0')
